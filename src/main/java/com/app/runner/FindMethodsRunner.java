@@ -1,7 +1,10 @@
 package com.app.runner;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -12,9 +15,12 @@ import com.app.model.Product;
 import com.app.repo.ProductRepository;
 
 @Component
+@Order(3)
 public class FindMethodsRunner implements CommandLineRunner {
 	@Autowired
 	private ProductRepository repo;
+	@Autowired
+	private DataSource datasource;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -41,7 +47,7 @@ public class FindMethodsRunner implements CommandLineRunner {
 		repo.findAll(e, Sort.by("prodCode"))
 		.forEach(System.out::println);
 
-		
+		System.out.println(datasource);
 		System.exit(0);
 	}
 
