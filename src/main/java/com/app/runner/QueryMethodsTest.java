@@ -4,18 +4,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import com.app.repo.ProductRepository;
+import com.app.repo.ProductRepoNew;
 
 @Component
 public class QueryMethodsTest implements CommandLineRunner {
 	@Autowired
-	private ProductRepository repo;
-	
+	private ProductRepoNew repo;
+
 	@Override
 	public void run(String... args) throws Exception {
-		repo.findByProdIdBetween(2,4)
+		repo.findByProdCodeLike("%P%",ProductRepoNew.ProductThree.class)
+		.stream()
+		.map((ob)->ob.getProdCost())
 		.forEach(System.out::println);
-		
+
+
 		System.exit(0);
 	}
 
