@@ -13,11 +13,7 @@ public class QueryMethodsTest implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		repo.findByProdCodeLike("%P%",ProductRepoNew.ProductThree.class)
-		.stream()
-		.map((ob)->ob.getProdCost())
-		.forEach(System.out::println);
-
+		repo.deleteMyData(4);
 
 		System.exit(0);
 	}
